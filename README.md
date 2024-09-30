@@ -18,7 +18,7 @@ Initial 1.0
 ## Global Script
 1. Create a Global Script called "DataGridRowMenu"
 2. Add the input parameters below to the Global Script
-   1. CloseOnSelect
+   1. CloseOnLinkClick
    2. DataGridClass
    3. MenuColumn
    4. MenuItemColumns
@@ -30,7 +30,7 @@ let scope = this;
 let menuItems = ~.Parameters.Input.MenuItemColumns;
 let menuColumn = ~.Parameters.Input.MenuColumn;
 let dgClass = ~.Parameters.Input.DataGridClass;
-let closeOnClick = ~.Parameters.Input.CloseOnSelect;
+let closeOnClick = ~.Parameters.Input.CloseOnLinkClick;
 if (typeof dgClass == "undefined") {
     console.error("The DataGridClass parameter is required");
     return false;
