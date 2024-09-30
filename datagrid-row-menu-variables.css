@@ -1,0 +1,23 @@
+:root {
+    --stadium-row-menu-top-position: 2px;
+    --stadium-row-menu-left-position: 8px;
+    --stadium-row-menu-background-color: #ffffff;
+    --stadium-row-menu-border-color: #ccc;
+    --stadium-row-menu-border-width: 1px;
+    --stadium-row-menu-border-radius: 4px;
+    --stadium-row-menu-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    /* To change the color of the current icon just replace the hex value of 1976d2 in the icon url stroke attribute (stroke='%231976d2') */
+    --stadium-row-menu-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 16 16'%3E%3Cg fill='none' stroke='%231976d2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'%3E%3Ccircle cx='8' cy='2.5' r='.75'/%3E%3Ccircle cx='8' cy='8' r='.75'/%3E%3Ccircle cx='8' cy='13.5' r='.75'/%3E%3C/g%3E%3C/svg%3E");
+    --stadium-row-menu-icon-size: 20px;
+
+    --stadium-row-menu-item-font-size: 12px;
+    --stadium-row-menu-item-font-color: inherit;
+    --stadium-row-menu-item-hover-font-color: inherit;
+    --stadium-row-menu-item-underline: none;
+    --stadium-row-menu-item-hover-underline: underline;
+    --stadium-row-menu-item-top-padding: 6px;
+    --stadium-row-menu-item-right-padding: 12px;
+    --stadium-row-menu-item-bottom-padding: 6px;
+    --stadium-row-menu-item-left-padding: 20px;
+}
