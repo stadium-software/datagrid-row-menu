@@ -146,22 +146,33 @@ function getElementIndex(haystack, needle) {
 
 ## Page
 1. Drag a *DataGrid* control to the page
-2. Set up the data bound columns as per normal
-3. Add one column to contain the menu (e.g. RowMenu)
-4. Change the *Column Type* to "Static Text"
-5. Set the *Text* and *Header Text* properties to empty by adding: =''
-6. Add any number of columns with a *Click* event handler (e.g. Link1, Link2, Link3)
-7. Change the *Column Type* to "Static Text"
+2. Add a unique class to the DataGrid Classes property (e.g. row-menu)
+3. Set up the data bound columns as per normal
+4. Add one column to contain the menu (e.g. RowMenu)
+5. Change the *Column Type* to "Static Text"
+6. Set the *Text* and *Header Text* properties to empty by adding: =''
+
+![](images/MenuColumn.png)
+
+7. Add any number of columns with a *Click* event handler (e.g. Link1, Link2, Link3)
+8. Change the *Column Type* to "Static Text"
 
 ![](images/LinkColumns.png)
 
 ## Page.Load
-1. Drag your query or WebService call into the event hanlder
+1. Drag your query or WebService call into the event handler
 2. Assign the data to the *DataGrid* control
 3. Drag a *List* of *Type* "Any" into the event handler and name it "MenuItemColumnsList"
-4. Add the names of the link columns you want to show in the menu as *List* items
+4. Add the names of the link columns you want to show in the menu as *List* items in the order in which you want them to appear
 
 ![](images/ListValues.png)
+
+5. Drag the "DataGridRowMenu" script under the *List* in the event handler
+6. Complete the script input parameters
+   1. CloseOnLinkClick: Set this to true to close the menu when a link is clicked
+   2. DataGridClass: The unique class you added to the *DataGrid* control (e.g. row-menu)
+   3. MenuColumn: The name of the column where the menu will be shown (e.g. RowMenu)
+   4. MenuItemColumns: The list of columns called "MenuItemColumnsList" that will become the menu items
 
 ## CSS
 The CSS below is required for the correct functioning of the module. Some elements can be [customised](#customising-css) using a variables CSS file. 
