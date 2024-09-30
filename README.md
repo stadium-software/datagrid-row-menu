@@ -174,6 +174,8 @@ function getElementIndex(haystack, needle) {
    3. MenuColumn: The name of the column where the menu will be shown (e.g. RowMenu)
    4. MenuItemColumns: The list of columns called "MenuItemColumnsList" that will become the menu items
 
+![](images/RowMenuClickEventHandler.png)
+
 ## CSS
 The CSS below is required for the correct functioning of the module. Some elements can be [customised](#customising-css) using a variables CSS file. 
 
