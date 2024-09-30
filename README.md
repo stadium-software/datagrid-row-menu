@@ -160,6 +160,9 @@ function getElementIndex(haystack, needle) {
 ![](images/LinkColumns.png)
 
 ## Page.Load
+
+![](images/RowMenuClickEventHandler.png)
+
 1. Drag your query or WebService call into the event handler
 2. Assign the data to the *DataGrid* control
 3. Drag a *List* of *Type* "Any" into the event handler and name it "MenuItemColumnsList"
@@ -173,8 +176,6 @@ function getElementIndex(haystack, needle) {
    2. DataGridClass: The unique class you added to the *DataGrid* control (e.g. row-menu)
    3. MenuColumn: The name of the column where the menu will be shown (e.g. RowMenu)
    4. MenuItemColumns: The list of columns called "MenuItemColumnsList" that will become the menu items
-
-![](images/RowMenuClickEventHandler.png)
 
 ## CSS
 The CSS below is required for the correct functioning of the module. Some elements can be [customised](#customising-css) using a variables CSS file. 
