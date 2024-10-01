@@ -1,6 +1,7 @@
 :root {
     --stadium-row-menu-top-position: 2px;
-    --stadium-row-menu-left-position: 8px;
+    --stadium-row-menu-left-position: none; /* 8px to make the menu opne to the right */
+    --stadium-row-menu-right-position: calc(100% - 30px); /* none or unset to make the menu open top the right */
     --stadium-row-menu-background-color: #ffffff;
     --stadium-row-menu-border-color: #ccc;
     --stadium-row-menu-border-width: 1px;
@@ -17,7 +18,7 @@
     --stadium-row-menu-item-underline: none;
     --stadium-row-menu-item-hover-underline: underline;
     --stadium-row-menu-item-top-padding: 6px;
-    --stadium-row-menu-item-right-padding: 12px;
+    --stadium-row-menu-item-right-padding: 20px; /* 12px when the menu opens to the right */
     --stadium-row-menu-item-bottom-padding: 6px;
-    --stadium-row-menu-item-left-padding: 20px;
+    --stadium-row-menu-item-left-padding: 12px; /* 20px when the menu opens to the right */
 }

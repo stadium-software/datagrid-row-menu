@@ -29,6 +29,7 @@
         position: absolute;
         top: var(--stadium-row-menu-top-position, 2px);
         left: var(--stadium-row-menu-left-position, 8px);
+        right: var(--stadium-row-menu-right-position, unset);
         box-shadow: var(--stadium-row-menu-box-shadow, var(--BOX-SHADOW-COLOR, rgba(100, 100, 111, 0.2) 0px 7px 29px 0px));
         border: var(--stadium-row-menu-border-width, 1px) solid var(--stadium-row-menu-border-color, var(--GENERAL-BORDER-COLOR, #ccc));
         border-radius: var(--stadium-row-menu-border-radius, 4px);
