@@ -7,6 +7,8 @@ This module allows for the display of *DataGrid* columns containing clickable li
 # Version
 1.1 Search bug fix
 
+1.2 Selectable column bug fix
+
 # Setup
 
 ## Database, Connector and DataGrid
@@ -25,7 +27,7 @@ This module allows for the display of *DataGrid* columns containing clickable li
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below into the JavaScript code property
 ```javascript
-/* Stadium Script v1.1 https://github.com/stadium-software/datagrid-row-menu */
+/* Stadium Script v1.2 https://github.com/stadium-software/datagrid-row-menu */
 let scope = this;
 let menuItems = ~.Parameters.Input.MenuItemColumns;
 let menuColumn = ~.Parameters.Input.MenuColumn;
@@ -87,12 +89,15 @@ document.onkeydown = function (evt) {
 };
 function addMenu() {
     observer.disconnect();
-    let rows = table.querySelectorAll("tbody tr");
-    let menuColIndex = getElementIndex(dataGridColumns, menuColumn);
     let obname = getObjectName(dg);
+    let selectCol = 0;
+    if (scope[`${obname}HasSelectableData`]) selectCol = 1;
     for (let i = 0; i < menuItems.length; i++) {
-        scope[`${obname}ColumnDefinitions`][getElementIndex(dataGridColumns, menuItems[i])].visible = false;
+        let menuItemColIndex = getElementIndex(dataGridColumns, menuItems[i]);
+        scope[`${obname}ColumnDefinitions`][menuItemColIndex - selectCol].visible = false;
     }
+    let menuColIndex = getElementIndex(dataGridColumns, menuColumn);
+    let rows = table.querySelectorAll("tbody tr");
     rows.forEach(function (row) {
         if (!row.querySelector(".stadium-row-menu")) {
             let menuTd = row.querySelector("td:nth-child(" + (menuColIndex + 1) + ")");
