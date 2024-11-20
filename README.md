@@ -5,9 +5,13 @@ This module allows for the display of *DataGrid* columns containing clickable li
 ![](images/View.gif)
 
 # Version
-1.1 Search bug fix
+Current version 1.3
 
-1.2 Selectable column bug fix
+1.1 'Search' bug fix
+
+1.2 'Selectable column' bug fix
+
+1.3 'Empty DataGrid' bug fix
 
 # Setup
 
@@ -27,7 +31,7 @@ This module allows for the display of *DataGrid* columns containing clickable li
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below into the JavaScript code property
 ```javascript
-/* Stadium Script v1.2 https://github.com/stadium-software/datagrid-row-menu */
+/* Stadium Script v1.3 https://github.com/stadium-software/datagrid-row-menu */
 let scope = this;
 let menuItems = ~.Parameters.Input.MenuItemColumns;
 let menuColumn = ~.Parameters.Input.MenuColumn;
@@ -59,7 +63,7 @@ let getObjectName = (obj) => {
 };
 let datagridname = getObjectName(dg);
 let table = dg.querySelector("table");
-let dataGridColumns = getColumnDefinition();
+let dataGridColumns = getColDefinition();
 
 let options = {
     characterData: true,
@@ -98,25 +102,27 @@ function addMenu() {
     }
     let menuColIndex = getElementIndex(dataGridColumns, menuColumn);
     let rows = table.querySelectorAll("tbody tr");
-    rows.forEach(function (row) {
-        if (!row.querySelector(".stadium-row-menu")) {
-            let menuTd = row.querySelector("td:nth-child(" + (menuColIndex + 1) + ")");
-            let kebab = menuTd.querySelector("button");
-            if (!kebab) {
-                kebab = document.createElement("button");
-                kebab.classList.add("btn", "btn-lg", "btn-link");
-                menuTd.textContent = '';
-                menuTd.appendChild(kebab);
+    if (rows[0].querySelector("td:nth-child(1)").textContent.indexOf("No data to display.") == -1) {
+        rows.forEach(function (row) {
+            if (!row.querySelector(".stadium-row-menu")) {
+                let menuTd = row.querySelector("td:nth-child(" + (menuColIndex + 1) + ")");
+                let kebab = menuTd.querySelector("button");
+                if (!kebab) {
+                    kebab = document.createElement("button");
+                    kebab.classList.add("btn", "btn-lg", "btn-link");
+                    menuTd.textContent = '';
+                    menuTd.appendChild(kebab);
+                }
+                kebab.classList.add("stadium-row-menu-icon");
+                let menu = document.createElement("div");
+                menu.classList.add("stadium-row-menu");
+                menuTd.appendChild(menu);
+                kebab.addEventListener("click", function (ev) {
+                    handleMenu(ev.target);
+                });
             }
-            kebab.classList.add("stadium-row-menu-icon");
-            let menu = document.createElement("div");
-            menu.classList.add("stadium-row-menu");
-            menuTd.appendChild(menu);
-            kebab.addEventListener("click", function (ev) {
-                handleMenu(ev.target);
-            });
-        }
-    });
+        });
+    }
     observer.observe(table, options);
 }
 function handleMenu(el) {
@@ -148,7 +154,7 @@ function hideMenu() {
     let menuParent = dg.querySelector("td.open");
     if (menuParent) menuParent.classList.remove("open");
 }
-function getColumnDefinition() {
+function getColDefinition() {
     let cols = [];
     let colDefs = scope[`${datagridname}ColumnDefinitions`];
     if (table.querySelector("thead th:nth-child(1) input[type=checkbox")) cols.push("RowSelector");
