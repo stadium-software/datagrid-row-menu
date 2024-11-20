@@ -102,7 +102,6 @@ function addMenu() {
     }
     let menuColIndex = getElementIndex(dataGridColumns, menuColumn);
     let rows = table.querySelectorAll("tbody tr");
-    console.log(rows);
     if (rows.length > 0 && rows[0].querySelector("td:nth-child(1)").textContent.indexOf("No data to display.") == -1) {
         rows.forEach(function (row) {
             if (!row.querySelector(".stadium-row-menu")) {
