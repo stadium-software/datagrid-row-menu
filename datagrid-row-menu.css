@@ -34,7 +34,7 @@
         border: var(--stadium-row-menu-border-width, 1px) solid var(--stadium-row-menu-border-color, var(--GENERAL-BORDER-COLOR, #ccc));
         border-radius: var(--stadium-row-menu-border-radius, 4px);
     }
-    .stadium-row-menu-item {
+    table.table>tbody>tr>td .stadium-row-menu-item {
         padding: var(--stadium-row-menu-item-top-padding, 6px) var(--stadium-row-menu-item-right-padding, 12px) var(--stadium-row-menu-item-bottom-padding, 6px) var(--stadium-row-menu-item-left-padding, 20px);
         button {
             color: var(--stadium-row-menu-item-font-color, var(--LINK-COLOR, inherit));
