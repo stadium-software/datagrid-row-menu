@@ -13,6 +13,8 @@ Current version 1.3
 
 1.3 'Empty DataGrid' bug fix
 
+1.3.1 Updated px to rem; fixed box-shadow
+
 # Setup
 
 ## Database, Connector and DataGrid
@@ -29,7 +31,7 @@ Current version 1.3
    3. MenuColumn
    4. MenuItemColumns
 3. Drag a *JavaScript* action into the script
-4. Add the Javascript below into the JavaScript code property
+4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
 /* Stadium Script v1.3 https://github.com/stadium-software/datagrid-row-menu */
 let scope = this;
@@ -216,6 +218,7 @@ The CSS below is required for the correct functioning of the module. Some elemen
 1. Open the CSS file called [*datagrid-row-menu-variables.css*](datagrid-row-menu-variables.css) from this repo
 2. Adjust the variables in the *:root* element as you see fit
 3. Overwrite the file in the CSS folder of your application with the customised file
+4. Do not change any CSS other than the variables provided in the *-variables.css file
 
 ### CSS Upgrading
 To upgrade the CSS in this module, follow the [steps outlined in this repo](https://github.com/stadium-software/samples-upgrading)
