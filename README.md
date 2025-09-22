@@ -5,8 +5,6 @@ This module allows for the display of *DataGrid* columns containing clickable li
 ![](images/View.gif)
 
 # Version
-Current version 1.3
-
 1.1 'Search' bug fix
 
 1.2 'Selectable column' bug fix
@@ -14,6 +12,8 @@ Current version 1.3
 1.3 'Empty DataGrid' bug fix
 
 1.3.1 Updated px to rem; fixed box-shadow
+
+1.4 Integrated CSS into script
 
 # Setup
 
@@ -33,7 +33,7 @@ Current version 1.3
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
-/* Stadium Script v1.3 https://github.com/stadium-software/datagrid-row-menu */
+/* Stadium Script v1.4 https://github.com/stadium-software/datagrid-row-menu */
 let scope = this;
 let menuItems = ~.Parameters.Input.MenuItemColumns;
 let menuColumn = ~.Parameters.Input.MenuColumn;
@@ -73,6 +73,7 @@ let options = {
     subtree: true,
 };
 let observer = new MutationObserver(addMenu);
+loadCSS();
 addMenu();
 observer.observe(table, options);
 
@@ -168,6 +169,71 @@ function getColDefinition() {
 function getElementIndex(haystack, needle) {
     return haystack.indexOf(needle);
 }
+function loadCSS() {
+    let moduleID = "stadium-datagrid-row-menu";
+    if (!document.getElementById(moduleID)) {
+        let cssMain = document.createElement("style");
+        cssMain.id = moduleID;
+        cssMain.type = "text/css";
+        cssMain.textContent = `
+.stadium-row-menu-datagrid {
+    .stadium-row-menu-icon,
+    .stadium-row-menu-icon:active {
+        background-image: var(--stadium-row-menu-icon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 16 16'%3E%3Cg fill='none' stroke='%231976d2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'%3E%3Ccircle cx='8' cy='2.5' r='.75'/%3E%3Ccircle cx='8' cy='8' r='.75'/%3E%3Ccircle cx='8' cy='13.5' r='.75'/%3E%3C/g%3E%3C/svg%3E"));
+        background-repeat: no-repeat;
+        background-size: var(--stadium-row-menu-icon-size, 2rem);
+        background-position: center;
+        height: var(--stadium-row-menu-icon-size, 2rem);
+        width: var(--stadium-row-menu-icon-size, 2rem);
+        cursor: pointer;
+        z-index: 101;
+    }
+    .open {
+        .stadium-row-menu {
+            display: flex;
+        }
+        .stadium-row-menu-icon {
+            position: relative;
+        }
+    }
+    td:has(.stadium-row-menu) {
+        position: relative;
+    }
+    .stadium-row-menu {
+        z-index: 100;
+        background-color: var(--stadium-row-menu-background-color, var(--BODY-BACKGROUND-COLOR, #ffffff));
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: var(--stadium-row-menu-top-position, 0.2rem);
+        left: var(--stadium-row-menu-left-position, 0.8rem);
+        right: var(--stadium-row-menu-right-position, unset);
+        box-shadow: var(--stadium-row-menu-box-shadow, var(--BOX-SHADOW-COLOR, rgba(100, 100, 111, 0.2)) 0 0.7rem 2.9rem 0);
+        border: var(--stadium-row-menu-border-width, 0.1rem) solid var(--stadium-row-menu-border-color, var(--GENERAL-BORDER-COLOR, #ccc));
+        border-radius: var(--stadium-row-menu-border-radius, 0.4rem);
+    }
+    table.table>tbody>tr>td .stadium-row-menu-item {
+        padding: var(--stadium-row-menu-item-top-padding, 0.6rem) var(--stadium-row-menu-item-right-padding, 1.2rem) var(--stadium-row-menu-item-bottom-padding, 0.6rem) var(--stadium-row-menu-item-left-padding, 2rem);
+        button {
+            color: var(--stadium-row-menu-item-font-color, var(--LINK-COLOR, inherit));
+            font-size: var(--stadium-row-menu-item-font-size, var(--FONT-SIZE-SMALL, 1.2rem));
+            text-decoration: var(--stadium-row-menu-item-underline, var(--LINK-DECORATION, none));
+            width: 100%;
+        }
+        button:hover {
+            color: var(--stadium-row-menu-item-hover-font-color, var(--LINK-COLOR, inherit));
+            text-decoration: var(--stadium-row-menu-item-hover-underline, var(--LINK-HOVER-DECORATION, underline));
+        }
+    }
+}
+html {
+    min-height: 100%;
+    font-size: 62.5%;
+}        
+        `;
+        document.head.appendChild(cssMain);
+    }
+}
 ```
 
 ## Page
@@ -204,15 +270,7 @@ function getElementIndex(haystack, needle) {
    4. MenuItemColumns: The list of columns called "MenuItemColumnsList" that will become the menu items
 
 ## CSS
-The CSS below is required for the correct functioning of the module. Some elements can be [customised](#customising-css) using a variables CSS file. 
-
-1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the two CSS files from this repo [*datagrid-row-menu-variables.css*](datagrid-row-menu-variables.css) and [*datagrid-row-menu.css*](datagrid-row-menu.css) into that folder
-3. Paste the link tags below into the *head* property of your application
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/datagrid-row-menu.css">
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/datagrid-row-menu-variables.css">
-``` 
+Some elements can be [customised](#customising-css) using a variables CSS file. 
 
 ### Customising CSS
 1. Open the CSS file called [*datagrid-row-menu-variables.css*](datagrid-row-menu-variables.css) from this repo
